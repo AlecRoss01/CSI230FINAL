@@ -18,30 +18,6 @@ bool fileExists(string file){
     }
 }
 
-/*int GetTaskAmount(string name){
-    string fileName = name + ".txt";
-    fstream fin;
-    string input;
-    int amount = 0;
-    if(fileExists(name)){
-        fin.open(fileName);
-        while(fin.eof() == false){
-            getline(fin, input);
-            if(input == "TaskStart"){
-                while(fin.eof() == false){
-                    getline(fin, input);
-                    amount++;
-                }
-                fin.close();
-                return amount;
-            }
-        }
-        fin.close();
-    }
-    return 0;
-}*/
-
-
 bool removeTask(string name, int taskNum){
     int taskAmount;
     string fileName = name + ".txt";
@@ -64,6 +40,7 @@ bool removeTask(string name, int taskNum){
         if(fin.is_open()){
             fin.close();
         }
+        taskAmount = amount;
         if(taskNum <= taskAmount){
             vector<string> fileVector;
             fin.open(fileName);
@@ -108,7 +85,7 @@ bool addPersonToGroup(string name, string group){
         }
         fin.close();
         //person file editing
-        fout.open(personFile);
+        fout.open(personFile, fstream::trunc);
         for(long unsigned int i = 0; i < fileStorage.size(); i++){
             if(fileStorage[i] == "TaskStart"){
                 fout << group << endl;
@@ -125,7 +102,7 @@ bool addPersonToGroup(string name, string group){
         }
         fin.close();
         //group file editing
-        fout.open(groupFile);
+        fout.open(groupFile, fstream::trunc);
         for(long unsigned int i = 0; i < fileStorage.size(); i++){
             if(fileStorage[i] == "TaskStart"){
                 fout << name << endl;
