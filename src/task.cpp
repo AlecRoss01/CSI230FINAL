@@ -121,6 +121,7 @@ bool addPersonToGroup(string name, string group){
 
 bool addTask(string name, string task){
     string fileName = name + ".txt";
+    ifstream fin;
     ofstream fout;
     if(fileExists(name)){
         fout.open(fileName, fstream::app);
@@ -134,6 +135,7 @@ bool addTask(string name, string task){
 }
 
 
+
 bool addPerson(string name){
     ofstream fout;
     string fileName = name + ".txt";
@@ -141,9 +143,6 @@ bool addPerson(string name){
         fout.open(fileName);
         fout << "person" << endl << "TaskStart" << endl;
         fout.close();
-        //fout.open("general.txt", fstream::app);
-        //fout << name << endl;
-        //fout.close();
         addPersonToGroup(name, "general");
         return true;
     }
